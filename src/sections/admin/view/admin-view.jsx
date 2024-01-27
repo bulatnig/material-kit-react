@@ -38,18 +38,6 @@ const columns = [
   }
 ];
 
-const rows = [
-  { id: 1, name: 'Snow', country: 'Jon' },
-  { id: 2, name: 'Lannister', country: 'Cersei' },
-  { id: 3, name: 'Lannister', country: 'Jaime' },
-  { id: 4, name: 'Stark', country: 'Arya' },
-  { id: 5, name: 'Targaryen', country: 'Daenerys' },
-  { id: 6, name: 'Melisandre', country: null },
-  { id: 7, name: 'Clifford', country: 'Ferrara' },
-  { id: 8, name: 'Frances', country: 'Rossini' },
-  { id: 9, name: 'Roxie', country: 'Harvey' },
-];
-
 export default function AdminPage() {
   const [tableData, setTableData] = useState([])
   const [paginationModel, setPaginationModel] = React.useState({
