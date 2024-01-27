@@ -43,6 +43,7 @@ export default function AdminPage() {
         paginationMode='server'
         paginationModel={paginationModel}
         onPaginationModelChange={setPaginationModel}
+        rowCount={999}
       />
     </div>
   );
