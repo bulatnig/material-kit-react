@@ -18,17 +18,29 @@ export default function AdminEdit({ open, value, onClose }) {
     reset(admin);
   }, [admin]);
 
+  const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+  const onSubmit = async data => {
+    const rawResponse = await fetch(`https://65b4c5bf41db5efd2866e486.mockapi.io/api/v1/users/${value}`, {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+    const content = await rawResponse.json();
+
+    alert(JSON.stringify(content));
+    onClose();
+  };
+
   return <Dialog
     open={open}
     onClose={onClose}
     PaperProps={{
       component: 'form',
-      onSubmit: (event) => {
-        event.preventDefault();
-        const formData = new FormData(event.currentTarget);
-        alert(`SUCCESS!! :-)\n\n${JSON.stringify(formData, null, 4)}`);
-        onClose();
-      },
+      onSubmit: handleSubmit(onSubmit),
     }}
   >
     <DialogTitle>Edit Admin</DialogTitle>
@@ -41,7 +53,7 @@ export default function AdminEdit({ open, value, onClose }) {
     </DialogContent>
     <DialogActions>
       <Button onClick={onClose}>Cancel</Button>
-      <Button type="submit">Subscribe</Button>
+      <Button type="submit">Submit</Button>
     </DialogActions>
   </Dialog>
     ;
