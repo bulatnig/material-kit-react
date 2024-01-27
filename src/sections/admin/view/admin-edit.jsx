@@ -21,7 +21,7 @@ export default function AdminEdit({ open, value, onClose }) {
   const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
   const onSubmit = async data => {
-    const rawResponse = await fetch(`https://65b4c5bf41db5efd2866e486.mockapi.io/api/v1/users/${value}`, {
+    await fetch(`https://65b4c5bf41db5efd2866e486.mockapi.io/api/v1/users/${value}`, {
       method: 'PUT',
       headers: {
         'Accept': 'application/json',
@@ -29,9 +29,6 @@ export default function AdminEdit({ open, value, onClose }) {
       },
       body: JSON.stringify(data)
     });
-    const content = await rawResponse.json();
-
-    alert(JSON.stringify(content));
     onClose();
   };
 

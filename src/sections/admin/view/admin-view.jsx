@@ -53,6 +53,14 @@ export default function AdminPage() {
     }
   ];
 
+  const handleEdit = () => {
+    setEdit(null);
+    setPaginationModel({
+      pageSize: paginationModel.pageSize,
+      page: paginationModel.page,
+    });
+  };
+
   return (
     <div style={{ height: '100%', width: '100%' }}>
       <DataGrid
@@ -63,7 +71,7 @@ export default function AdminPage() {
         onPaginationModelChange={setPaginationModel}
         rowCount={999}
       />
-      <AdminEdit open={edit} value={edit} onClose={() => setEdit(null)}/>
+      <AdminEdit open={edit} value={edit} onClose={handleEdit}/>
     </div>
   );
 }
