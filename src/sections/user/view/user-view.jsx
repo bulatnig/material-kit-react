@@ -144,6 +144,7 @@ export default function UserPage() {
                       isVerified={row.isVerified}
                       selected={selected.indexOf(row.name) !== -1}
                       handleClick={(event) => handleClick(event, row.name)}
+                      user={row}
                     />
                   ))}
 

@@ -13,6 +13,7 @@ import IconButton from '@mui/material/IconButton';
 
 import Label from 'src/components/label';
 import Iconify from 'src/components/iconify';
+import EditUser from './edit-user';
 
 // ----------------------------------------------------------------------
 
@@ -25,8 +26,10 @@ export default function UserTableRow({
   isVerified,
   status,
   handleClick,
+  user,
 }) {
   const [open, setOpen] = useState(null);
+  const [edit, setEdit] = useState(false);
 
   const handleOpenMenu = (event) => {
     setOpen(event.currentTarget);
@@ -34,6 +37,11 @@ export default function UserTableRow({
 
   const handleCloseMenu = () => {
     setOpen(null);
+  };
+
+  const handleEdit = () => {
+    setEdit(true);
+    handleCloseMenu();
   };
 
   return (
@@ -79,7 +87,7 @@ export default function UserTableRow({
           sx: { width: 140 },
         }}
       >
-        <MenuItem onClick={handleCloseMenu}>
+        <MenuItem onClick={handleEdit}>
           <Iconify icon="eva:edit-fill" sx={{ mr: 2 }} />
           Edit
         </MenuItem>
@@ -89,6 +97,7 @@ export default function UserTableRow({
           Delete
         </MenuItem>
       </Popover>
+      <EditUser open={edit} value={user} onClose={() => setEdit(false)}/>
     </>
   );
 }
